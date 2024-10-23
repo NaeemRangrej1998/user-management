@@ -13,6 +13,8 @@ function AllUsersPage() {
     })
     const [currentPage, setCurrentPage] = useState(0);
     const [isOpen,setIsOpen]=useState(false);
+    const [isEditing,setIsEditing]=useState(false);
+
     useEffect(() => {
         getAllSavedUsers()
     }, [currentPage]);
@@ -32,6 +34,11 @@ function AllUsersPage() {
     }
     const toggleAddUser=()=>{
         setIsOpen(!isOpen)
+        console.log({isOpen});
+    }
+
+    const toggleEditUser=()=>{
+        setIsEditing(!isEditing)
         console.log({isOpen});
     }
 
@@ -57,9 +64,9 @@ function AllUsersPage() {
                             <td>{users.lastName}</td>
                             <td>{users.email}</td>
                             <td style={{display: "flex", alignItems: "center", justifyContent: "space-evenly"}}>
-                                <Link to={`/edit-user/${1}`}>
-                                    <i className="fa fa-pencil" aria-hidden="true"></i>
-                                </Link>
+                                {/*<Link to={`/edit-user/${1}`}>*/}
+                                    <i className="fa fa-pencil" aria-hidden="true" onClick={toggleEditUser}></i>
+                                {/*</Link>*/}
                                 <Link to={`/user/${1}`}>
                                     <i className="fa fa-eye" aria-hidden="true"></i>
                                 </Link>
