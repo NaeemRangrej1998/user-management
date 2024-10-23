@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import {getAllUsers} from "../../service/user.api";
 import {Button} from "react-bootstrap";
 import AddUser from "./AddUser";
+import EditUser from "./EditUser";
 
 function AllUsersPage() {
     const [user, setUser] = useState({
@@ -37,9 +38,9 @@ function AllUsersPage() {
         console.log({isOpen});
     }
 
-    const toggleEditUser=()=>{
+    const toggleEditUser=(id)=>{
         setIsEditing(!isEditing)
-        console.log({isOpen});
+        console.log({isEditing,id});
     }
 
     return (
@@ -65,7 +66,7 @@ function AllUsersPage() {
                             <td>{users.email}</td>
                             <td style={{display: "flex", alignItems: "center", justifyContent: "space-evenly"}}>
                                 {/*<Link to={`/edit-user/${1}`}>*/}
-                                    <i className="fa fa-pencil" aria-hidden="true" onClick={toggleEditUser}></i>
+                                    <i className="fa fa-pencil" aria-hidden="true" onClick={()=>toggleEditUser(users.id)}></i>
                                 {/*</Link>*/}
                                 <Link to={`/user/${1}`}>
                                     <i className="fa fa-eye" aria-hidden="true"></i>
@@ -83,6 +84,11 @@ function AllUsersPage() {
             <AddUser
                 isOpen={isOpen}
                 toggleAddUser={toggleAddUser}
+                getAllSavedUsers={getAllSavedUsers}
+            />
+            <EditUser
+                isOpen={isEditing}
+                toggleAddUser={toggleEditUser}
                 getAllSavedUsers={getAllSavedUsers}
             />
         </div>

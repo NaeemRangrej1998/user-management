@@ -10,7 +10,7 @@ function EditUser(props) {
             <Modal show={isOpen} aria-labelledby="contained-modal-title-vcenter" onHide={() => toggleAddUser} centered>
                 <Modal.Header>
                     <Modal.Title id="example-modal-sizes-title-sm">
-                        Small Modal
+                       Edit User
                     </Modal.Title>
                 </Modal.Header>
                 <Formik initialValues={{firstName: "", lastName: "", email: "", password: "", roleId: ""}}
